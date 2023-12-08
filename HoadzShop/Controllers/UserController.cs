@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using HoaDzShopBL.Interface;
+using HoaDzShopCommon.Model;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,5 +13,19 @@ namespace HoadzShop.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
+        private readonly IUserBL _userBL;
+
+        public UserController(IUserBL userBL)
+        {
+            _userBL = userBL;
+        }
+
+        [HttpPost]
+        [Route("login")]
+        public bool Login()
+        {
+            return _userBL.login(new UserLogin());
+            //return true;
+        }
     }
 }

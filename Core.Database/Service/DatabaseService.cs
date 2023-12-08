@@ -681,8 +681,10 @@ namespace Core.Database
         /// <returns></returns>
         public IDbConnection GetConnection(Guid tenantId, string appCode)
         {
-            string connectionString = GetConnectionString(tenantId, appCode);
-            return new MySqlConnection(connectionString);
+            // chưa có cơ chế connection động
+            //string connectionString = GetConnectionString(tenantId, appCode);
+            //return new MySqlConnection(connectionString);
+            return GetConnectionStringOneTenant();
         }
 
         /// <summary>
@@ -733,7 +735,15 @@ namespace Core.Database
 
             return connection;
         }
-
+        private IDbConnection GetConnectionStringOneTenant(string connectionName = null)
+        {
+            if (string.IsNullOrEmpty(connectionName))
+            {
+                connectionName = ConnectionString.Management;
+            }
+            var con = _configService.GetConnectionString(connectionName);
+            return new MySqlConnection(con);
+        }
         private List<ShardConfig> GetTenantShardConfigForCache(Guid tenantId, string masterDbConnectionString, string cacheKey)
         {
             List<ShardConfig> shardConfigs = GetTenantShardConfig(tenantId, masterDbConnectionString);

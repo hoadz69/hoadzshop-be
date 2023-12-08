@@ -11,7 +11,7 @@ using Microsoft.Extensions.Logging;
 namespace Core.Services
 {
     // phien ban hien tại đã khác
-    internal class LogService: ILogService
+    public class LogService: ILogService
     {
 //        private static Logger _currentLogger;
 

@@ -39,6 +39,12 @@ namespace Core.Contant
         public const string ModifiedDate = "ModifiedDate";
         public const string ModifiedBy = "ModifiedBy";
 
-
+        public class ConnectionString
+        {
+            public const string Management = "Management";
+            public const string Auth = "Auth";
+            public const string WesignAttestation = "WesignAttestation";
+            public const string Notification = "Notification";
+        }
     }
 }

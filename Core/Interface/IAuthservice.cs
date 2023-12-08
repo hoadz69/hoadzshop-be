@@ -50,7 +50,7 @@ namespace Core.Services
 
         string GetAuthPayloadString();
 
-        List<SC_PermissionByApp> GetPermission();
+        //List<SC_PermissionByApp> GetPermission();
 
         string GetToken();
 

@@ -1,12 +1,14 @@
-﻿using System;
+﻿using HoaDzShopCommon.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HoaDzShopBL.interface
+namespace HoaDzShopBL.Interface
 {
-    class IUserBL
-{
-}
+    public interface IUserBL
+    {
+        bool login(UserLogin userLogin);
+    }
 }

@@ -11,7 +11,7 @@ using Microsoft.Extensions.Options;
 
 namespace Core.Services
 {
-    internal class CacheService : BaseCacheService , ICacheService
+    public class CacheService : BaseCacheService , ICacheService
     {
         public CacheService(IDistributedCache cache, IConfigService configService,ILogService logService) : base(configService : configService,logService : logService)
         {
@@ -19,7 +19,7 @@ namespace Core.Services
         }
     }
 
-    internal class MemoryCacheService : BaseCacheService, IMemoryCacheService
+    public class MemoryCacheService : BaseCacheService, IMemoryCacheService
     {
         public MemoryCacheService(IMemoryDistributedCache cache, IConfigService configService, ILogService logService) : base(configService : configService, logService : logService)
         {
@@ -27,7 +27,7 @@ namespace Core.Services
         }
     }
 
-    internal class CustomMemoryDistributedCache : MemoryDistributedCache, IMemoryDistributedCache
+    public class CustomMemoryDistributedCache : MemoryDistributedCache, IMemoryDistributedCache
     {
         public CustomMemoryDistributedCache(IOptions<MemoryDistributedCacheOptions> optionsAccessor) : base(optionsAccessor)
         {
@@ -41,7 +41,7 @@ namespace Core.Services
         }
     }
 
-    internal class BaseCacheService
+    public class BaseCacheService
     {
         protected IDistributedCache _cache;
         private readonly IConfigService _configService;

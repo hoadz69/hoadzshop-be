@@ -6,21 +6,19 @@ using Microsoft.Extensions.Configuration;
 
 namespace Core.Services
 {
-    internal class ConfigService : IConfigService
+    public class ConfigService : IConfigService
     {
-
-        private readonly IConfigurationSection _appSetting;
-        private readonly IConfigurationSection _connectionStrings;
-        private readonly IConfigurationSection _apiUrls;
-        private readonly IConfigurationSection _storage;
+        private readonly IConfiguration _configService;
+        private  IConfigurationSection _appSetting;
+        private  IConfigurationSection _connectionStrings;
+        private  IConfigurationSection _apiUrls;
+        private  IConfigurationSection _storage;
         private static Dictionary<int, string> _storageTypeDictionary;
 
-        public ConfigService(IConfigurationSection configuration )
+        public ConfigService(IConfiguration configuration )
         {
-            _appSetting = configuration.GetSection("AppSettings");
-            _connectionStrings = configuration.GetSection("ConnectionStrings");
-            _apiUrls = configuration.GetSection("ApiUrl");
-            _storage = configuration.GetSection("Storage");
+            _configService = configuration;
+            onfigServie();
         }
         public string GetAppSetting(string key, string defaultValue = null)
         {
@@ -84,6 +82,14 @@ namespace Core.Services
                 throw new Exception("Invalid StorageType");
             }
             return _storageTypeDictionary[storageKey];
+        }
+
+        private void onfigServie()
+        {
+            _appSetting = _configService.GetSection("AppSettings");
+            _connectionStrings = _configService.GetSection("ConnectionStrings");
+            _apiUrls = _configService.GetSection("ApiUrl");
+            _storage = _configService.GetSection("Storage");
         }
     }
 }

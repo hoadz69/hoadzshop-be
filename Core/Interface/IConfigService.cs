@@ -1,3 +1,5 @@
+using Microsoft.Extensions.Configuration;
+
 namespace Core.Interface
 {
     public interface IConfigService
@@ -7,5 +9,6 @@ namespace Core.Interface
         string GetApiUrl(string key, string defaultValue = null);
         string GetStorageConfig(string key, string defaultValue = null);
         string GetStorageType(int storageType);
+
     }
 }

@@ -23,7 +23,7 @@ using BaseModel = Core.Model.BaseModel;
 
 namespace Core.BL
 {
-    internal class BaseBL : IBaseBL
+    public  class BaseBL : IBaseBL
     {
         public virtual string ApplicationCode => string.Empty;
         protected readonly IAuthService _authService;
@@ -61,18 +61,18 @@ namespace Core.BL
 
         public BaseBL(CoreServiceCollection serviceCollection)
         {
-            _authService = serviceCollection.AuthService;
-            _cacheService = serviceCollection.CacheService;
-            _memoryCacheService = serviceCollection.MemoryCacheService;
-            _configService = serviceCollection.ConfigService;
-            _logService = serviceCollection.LogService;
+            _authService = serviceCollection.AuthService();
+            //_cacheService = serviceCollection.CacheService();
+            _memoryCacheService = serviceCollection.MemoryCacheService();
+            _configService = serviceCollection.ConfigService();
+            _logService = serviceCollection.LogService();
             // _optionService = serviceCollection.OptionService;
-            _databaseService = serviceCollection.DatabaseService;
-            _httpService = serviceCollection.HttpService;
+            _databaseService = serviceCollection.DatabaseService();
+            _httpService = serviceCollection.HttpService();
             //_pushNotificationService = serviceCollection.PushNotificationService;
             //_notificationService = serviceCollection.NotificationService;
             //_notificationCenterService = serviceCollection.NotificationCenterService;
-            _sessionBl = serviceCollection.SessionBl;
+            //_sessionBl = serviceCollection.SessionBl;
             _userId = _authService.GetUserId();
             _userName = _authService.GetUserName();
             _fullName = _authService.GetFullName();
